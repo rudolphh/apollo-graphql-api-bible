@@ -1,0 +1,24 @@
+{
+  "name": "graphql-api-bible",
+  "version": "1.0.0",
+  "description": "graphql wrapper for rest api bible",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "graphql",
+    "api",
+    "bible"
+  ],
+  "author": "Rudy A. Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-rest": "^0.12.0",
+    "apollo-server": "^2.23.0",
+    "graphql": "^15.5.0",
+    "lodash": "^4.17.21",
+    "node-fetch": "^2.6.1"
+  }
+}
