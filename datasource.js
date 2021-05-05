@@ -1,9 +1,11 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
+import fetch from 'node-fetch';
 
 export class BibleAPI extends RESTDataSource {
   constructor() {
     super();
     this.baseURL = 'https://api.scripture.api.bible/v1/';
+    this.apiKey = { 'api-key' : '9bea9ab8db7fd98f1f0ebb9cd98b8001' };
   }
 
   // put api-key in environment variable before going live
@@ -12,9 +14,13 @@ export class BibleAPI extends RESTDataSource {
   }
 
   async getAllBibles() {
-    const result = await this.get('bibles');
-    //console.log(result);
-    return result.data;
+    //const result = await this.get('bibles');
+    const result = await fetch(this.baseURL + 'bibles', { headers: this.apiKey })
+    .then(res => res.json())
+    .then(json => json.data);
+
+    console.log(result);
+    return result;
   }
 
   async getABible(bibleId) {
@@ -22,4 +28,15 @@ export class BibleAPI extends RESTDataSource {
     //console.log(result);
     return result.data; 
   }
+
+  async getAllBooks(bibleId) {
+    const result = await this.get(`bibles/${bibleId}/books`);
+    return result.data;
+  }
+
+  async getABook(bibleId, bookId) {
+    const result = await this.get(`bibles/${bibleId}/books/${bookId}`);
+    return result.data;
+  }
+
 };

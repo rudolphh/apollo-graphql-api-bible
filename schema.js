@@ -39,9 +39,28 @@ export const typeDefs = gql`
     countries: [Countries]
     language: Language
   }
+  
+  type Book {
+    id: String
+    bibleId: String
+    abbreviation: String
+    name: String
+    nameLong: String
+    chapters: [Chapter]
+  }
+
+  type Chapter {
+    id: String
+    bibleId: String
+    number: String
+    bookId: String
+    reference: String
+  }
 
   type Query {
     bibles: [Bible]
     bible(bibleId: String!): Bible
+    books(bibleId: String!): [Book]
+    book(bibleId: String!, bookId: String!): Book
   }
 `;
